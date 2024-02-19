@@ -14,8 +14,8 @@ integration.onEnable(async (_, { teamId, siteId, client }) => {
   };
 });
 
-integration.addBuildEventHandler("onPreBuild", ({ context }) => {
-  console.log("Our context is", context);
+integration.addBuildEventHandler("onPreBuild", ({ buildConfig }) => {
+  console.log("onPreBuild", buildConfig);
 });
 
 export { integration };
