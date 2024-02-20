@@ -14,8 +14,11 @@ integration.onEnable(async (_, { teamId, siteId, client }) => {
   };
 });
 
-integration.addBuildEventHandler("onPreBuild", ({ buildConfig }) => {
-  console.log("onPreBuild", buildConfig);
-});
+integration.addBuildEventHandler(
+  "onPreBuild",
+  ({ buildConfig, constants, netlifyConfig }) => {
+    console.log("onPreBuild", constants, netlifyConfig);
+  },
+);
 
 export { integration };
