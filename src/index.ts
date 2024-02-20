@@ -1,7 +1,11 @@
 // Documentation: https://sdk.netlify.com
-import { NetlifyIntegration } from "@netlify/sdk";
+import { NetlifyIntegration, z } from "@netlify/sdk";
 
-const integration = new NetlifyIntegration();
+const buildConfigSchema = z.object({
+  some_setting: z.string().optional(),
+});
+
+const integration = new NetlifyIntegration({ buildConfigSchema });
 
 integration.onEnable(async (_, { teamId, siteId, client }) => {
   // Build event handlers are disabled by default, so we need to
@@ -17,6 +21,7 @@ integration.onEnable(async (_, { teamId, siteId, client }) => {
 integration.addBuildEventHandler(
   "onPreBuild",
   ({ buildConfig, constants, netlifyConfig }) => {
+    console.log("buildConfig", buildConfig);
     console.log("onPreBuild", constants, netlifyConfig);
   },
 );
